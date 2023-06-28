@@ -43,8 +43,14 @@ class Mail
             case change
             when 0
                 collected.each do |final, value|
-                    # todo: handle messages
-                    customer_stamps << "#{value} piecu centu markas"
+                    case final
+                    when 5
+                        value = "#{value} piecu"
+                    else
+                        value = "#{value} trīs"
+                    end
+                    
+                    customer_stamps << "#{value} centu markas"
                 end
                 
                 return customer_stamps.join(', ')
