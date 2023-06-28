@@ -15,7 +15,7 @@ class Mail
                 raise ArgumentError, "Value has not been set."
             end
             
-            if customer_input.to_i < @min_price
+            if customer_input < @min_price
                 raise RuntimeError, "Lowest transaction price is set to #{@min_price}"
             end
         rescue RuntimeError => error
