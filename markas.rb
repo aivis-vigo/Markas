@@ -27,7 +27,7 @@ class Mail
     
     def stamps
         collected = {}
-        customer_stamps = []
+        bought_stamps = []
         
         @available_stamps.each do |stamp_price|
             count = (@customer_input / stamp_price).floor
@@ -48,10 +48,10 @@ class Mail
                         value = "#{value} trīs"
                     end
                     
-                    customer_stamps << "#{value} centu markas"
+                    bought_stamps << "#{value} centu markas"
                 end
                 
-                return customer_stamps.join(', ')
+                return bought_stamps.join(', ')
             else
                 collected[stamp_price] -= 1
                 @customer_input -= collected[stamp_price] * stamp_price
