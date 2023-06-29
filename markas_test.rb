@@ -1,6 +1,8 @@
 require 'test/unit'
 require_relative './markas'
 
+# set_value testē ar 0, jo
+
 class MailTest < Test::Unit::TestCase
     def setup
         @set_value = Mail.new(0, 8, [5, 3])
@@ -10,7 +12,7 @@ class MailTest < Test::Unit::TestCase
     end
     
     def test_set_value
-        assert_equal"Nav ievadīta vertība", @set_value.validate
+        assert_equal"Nav ievadīta derīga vertība", @set_value.validate
     end
     
     def test_min_value

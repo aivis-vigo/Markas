@@ -4,7 +4,7 @@ class Mail
         min_price,
         available_stamps
     )
-        @customer_input = customer_input
+        @customer_input = customer_input.to_i
         @min_price = min_price
         @available_stamps = available_stamps
     end
@@ -12,7 +12,7 @@ class Mail
     def validate
         begin
             if @customer_input == 0
-                raise ArgumentError, "Nav ievadīta vertība"
+                raise ArgumentError, "Nav ievadīta derīga vertība"
             end
             
             if @customer_input < @min_price
@@ -59,3 +59,5 @@ class Mail
         end
     end
 end
+
+p '17resrt'.to_i
