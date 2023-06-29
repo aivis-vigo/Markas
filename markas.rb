@@ -59,5 +59,3 @@ class Mail
         end
     end
 end
-
-p '17resrt'.to_i

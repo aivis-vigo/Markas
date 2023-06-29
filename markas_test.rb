@@ -1,8 +1,6 @@
 require 'test/unit'
 require_relative './markas'
 
-# set_value testē ar 0, jo
-
 class MailTest < Test::Unit::TestCase
     def setup
         @set_value = Mail.new(0, 8, [5, 3])
