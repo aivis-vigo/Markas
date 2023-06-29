@@ -18,10 +18,8 @@ class Mail
             if @customer_input < @min_price
                 raise RuntimeError, "Pirkumam ir jābūt vismaz #{@min_price.to_f / 100} €"
             end
-        rescue RuntimeError => error
+        rescue RuntimeError, ArgumentError => error
             return "#{ error.message }"
-        rescue ArgumentError => error
-            return "#{ error.message}"
         end
     end
     
