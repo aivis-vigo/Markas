@@ -26,35 +26,40 @@ class Mail
     end
     
     def stamps
-        collected = {}
+        count_for = {}
         bought_stamps = []
         
-        @available_stamps.each do |stamp_price|
-            count = (@customer_input / stamp_price).floor
+        @available_stamps.each do |stamp|
+            count = (@customer_input / stamp).floor
             
             if count >= 1
-                collected[stamp_price] = count
+                count_for[stamp] = count
             end
             
-            change = @customer_input - (collected[stamp_price] * stamp_price)
+            change = @customer_input - (count_for[stamp] * stamp)
             
             case change
             when 0
-                collected.each do |final, value|
-                    case final
+                count_for.each do |price, units|
+                    case price
                     when 5
-                        value = "#{value} piecu"
+                        units = "#{units} piecu"
                     else
-                        value = "#{value} trīs"
+                        units = "#{units} trīs"
                     end
                     
-                    bought_stamps << "#{value} centu markas"
+                    bought_stamps << "#{units} centu markas"
                 end
-                
                 return bought_stamps.join(', ')
             else
-                collected[stamp_price] -= 1
-                @customer_input -= collected[stamp_price] * stamp_price
+                # because theres change get rid of 1 stamp and move on to cheaper one
+                count_for[stamp] -= 1
+                # sets value to work with for next loop
+                @customer_input -= count_for[stamp] * stamp
+                
+                if count_for[stamp] == 0
+                    count_for.delete(stamp)
+                end
             end
         end
     end

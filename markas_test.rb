@@ -5,6 +5,7 @@ class MailTest < Test::Unit::TestCase
     def setup
         @set_value = Mail.new(0, 8, [5, 3])
         @min_value = Mail.new(5, 8, [5, 3])
+        @check_empty = Mail.new(9, 8, [5, 3])
         @bought_few = Mail.new(25, 8, [5, 3])
         @bought_many = Mail.new(111, 8, [5, 3])
     end
@@ -15,6 +16,10 @@ class MailTest < Test::Unit::TestCase
     
     def test_min_value
         assert_equal "Pirkumam ir jābūt vismaz 0.08 €", @min_value.validate
+    end
+    
+    def test_check_empty
+        assert_equal "3 trīs centu markas", @check_empty.validate
     end
     
     def test_buy
