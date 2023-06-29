@@ -1,4 +1,4 @@
-### Pasts
+### Markas
 Palaist uzdevumu:  
 ``` ruby markas_test.rb```
 
