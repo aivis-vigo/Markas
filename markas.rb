@@ -9,21 +9,19 @@ class Mail
         @available_stamps = available_stamps
     end
     
-    def validate(customer_input)
+    def validate
         begin
-            if customer_input == 0
-                raise ArgumentError, "Value has not been set."
+            if @customer_input == 0
+                raise ArgumentError, "Nav ievadīta vertība"
             end
             
-            if customer_input < @min_price
-                raise RuntimeError, "Lowest transaction price is set to #{@min_price}"
+            if @customer_input < @min_price
+                raise RuntimeError, "Pirkumam ir jābūt vismaz #{@min_price.to_f / 100} €"
             end
         rescue RuntimeError => error
-            puts "#{ error.message }"
-            exit
+            return "#{ error.message }"
         rescue ArgumentError => error
-            puts "#{ error.message}"
-            exit
+            return "#{ error.message}"
         end
     end
     
@@ -61,12 +59,3 @@ class Mail
         end
     end
 end
-
-
-customer_input = ARGV[0].to_i
-min_transaction = 8
-available_stamps = [5, 3]
-
-buy = Mail.new(customer_input, min_transaction, available_stamps)
-buy.validate(customer_input)
-puts buy.stamps
