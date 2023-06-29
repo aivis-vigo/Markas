@@ -52,15 +52,16 @@ class Mail
                 end
                 return bought_stamps.join(', ')
             else
-                # because theres change get rid of 1 stamp and move on to cheaper one
                 count_for[stamp] -= 1
-                # sets value to work with for next loop
                 @customer_input -= count_for[stamp] * stamp
-                
-                if count_for[stamp] == 0
-                    count_for.delete(stamp)
-                end
             end
         end
     end
 end
+
+run = Mail.new(
+    ARGV[0].to_i,
+    8,
+    [5, 3]
+)
+puts run.validate
