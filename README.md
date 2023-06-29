@@ -1,6 +1,6 @@
 ### Markas
 
-Palaist uzdevumu:  
+Palaist uzdevumu:<br>
 ```ruby markas.rb <vērtība>```
 ---
 Testiem:  
