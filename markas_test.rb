@@ -10,18 +10,18 @@ class MailTest < Test::Unit::TestCase
     end
     
     def test_set_value
-        assert_equal"Nav ievadīta derīga vertība", @set_value.validate
+        assert_equal "Nav ievadīta derīga vertība", @set_value.validate
     end
     
     def test_min_value
-        assert_equal"Pirkumam ir jābūt vismaz 0.08 €", @min_value.validate
+        assert_equal "Pirkumam ir jābūt vismaz 0.08 €", @min_value.validate
     end
     
     def test_buy
-        assert_equal"5 piecu centu markas", @bought_few.stamps
+        assert_equal "5 piecu centu markas", @bought_few.stamps
     end
     
     def test_buy_second
-        assert_equal"21 piecu centu markas, 2 trīs centu markas", @bought_many.stamps
+        assert_equal "21 piecu centu markas, 2 trīs centu markas", @bought_many.stamps
     end
 end
