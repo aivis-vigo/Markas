@@ -5,8 +5,8 @@ class MailTest < Test::Unit::TestCase
     def setup
         @set_value = Mail.new(0, 8, [5, 3])
         @min_value = Mail.new(5, 8, [5, 3])
-        @buy = Mail.new(25, 8, [5, 3])
-        @buy_second = Mail.new(111, 8, [5, 3])
+        @bought_few = Mail.new(25, 8, [5, 3])
+        @bought_many = Mail.new(111, 8, [5, 3])
     end
     
     def test_set_value
@@ -18,10 +18,10 @@ class MailTest < Test::Unit::TestCase
     end
     
     def test_buy
-        assert_equal"5 piecu centu markas", @buy.stamps
+        assert_equal"5 piecu centu markas", @bought_few.stamps
     end
     
     def test_buy_second
-        assert_equal"21 piecu centu markas, 2 trīs centu markas", @buy_second.stamps
+        assert_equal"21 piecu centu markas, 2 trīs centu markas", @bought_many.stamps
     end
 end
