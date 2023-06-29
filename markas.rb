@@ -53,7 +53,7 @@ class Mail
                 
                 return customer_stamps.join(', ')
             else
-                collected[stamp_price] = collected[stamp_price] - 1
+                collected[stamp_price] -= 1
                 @customer_input -= collected[stamp_price] * stamp_price
             end
         end
