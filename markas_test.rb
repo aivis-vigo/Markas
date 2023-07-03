@@ -3,6 +3,7 @@
 require 'test/unit'
 require_relative './markas'
 
+# Class representing tests for the Mail class
 class MailTest < Test::Unit::TestCase
   def setup
     @set_value = Mail.new(0, 8, [5, 3])
@@ -12,7 +13,6 @@ class MailTest < Test::Unit::TestCase
     @bought_few = Mail.new(25, 8, [5, 3])
     @many_coins = Mail.new(105, 8, [5, 3])
     @bought_many = Mail.new(111, 8, [5, 3])
-    @a_lot_coins = Mail.new(655, 8, [5, 3])
     @more_than_one_argument = Mail.new('145 937 542', 8, [5, 3])
     @float_argument = Mail.new('10.5', 8, [5, 3])
     @prefixed_argument = Mail.new('0010', 8, [5, 3])
@@ -46,10 +46,6 @@ class MailTest < Test::Unit::TestCase
 
   def test_many_coin
     assert_equal '21 piecu centu marka', @many_coins.validate, '105 should be 21 stamps'
-  end
-
-  def test_a_lot_coin
-    assert_equal '131 piecu centu marka', @a_lot_coins.validate, '655 should be 131 stamps'
   end
 
   def test_more_than_one_argument

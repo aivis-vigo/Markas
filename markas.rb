@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 # This class represents a Mail object that handles customer input, minimum price, and available stamps.
-
 class Mail
   def initialize(
     customer_input,
@@ -11,6 +10,8 @@ class Mail
     @customer_input = customer_input.to_i
     @min_price = min_price
     @available_stamps = available_stamps
+    @count_for = {}
+    @bought_stamps = []
   end
 
   # Validates the customer input, raising errors if necessary.
@@ -30,7 +31,7 @@ class Mail
     bought_stamps = []
 
     @available_stamps.each do |stamp|
-      count = (@customer_input / stamp).floor
+      count = calculate_stamp_count(stamp)
 
       count_for[stamp] = count if count >= 1
 
@@ -38,29 +39,45 @@ class Mail
 
       case change
       when 0
-        count_for.each do |price, units|
-          units = case price
-                  when 5
-                    pluralize('marka', 'piecu', units)
-                  else
-                    pluralize('marka', 'trīs', units)
-                  end
-
-          bought_stamps << units.to_s
-        end
-
+        add_stamps_to_bought_stamps(count_for, bought_stamps)
         return bought_stamps.join(', ')
       when 3
-        count_for[change] = 1
-        @customer_input = change
-
+        handle_change(change, count_for)
       else
-        count_for[stamp] -= 1
-        @customer_input -= count_for[stamp] * stamp
-
+        change_left(count_for, stamp)
       end
     end
+
     'Atlikums... Nav iespējams veikt pirkumu!'
+  end
+
+  private
+
+  def calculate_stamp_count(stamp)
+    (@customer_input / stamp).floor
+  end
+
+  def add_stamps_to_bought_stamps(count_for, bought_stamps)
+    count_for.each do |price, units|
+      units = case price
+              when 5
+                pluralize('marka', 'piecu', units)
+              else
+                pluralize('marka', 'trīs', units)
+              end
+
+      bought_stamps << units.to_s
+    end
+  end
+
+  def handle_change(change, count_for)
+    count_for[change] = 1
+    @customer_input = change
+  end
+
+  def change_left(count_for, stamp)
+    count_for[stamp] -= 1
+    @customer_input -= count_for[stamp] * stamp
   end
 
   # Pluralizes the word based on the count.
