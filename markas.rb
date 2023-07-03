@@ -81,13 +81,13 @@ class Mail
   end
 
   # Pluralizes the word based on the count.
-  def pluralize(word, other_word, count)
+  def pluralize(word, number_as_word, count)
     if count == 1
-      "#{count} #{other_word} centu #{word}"
+      "#{count} #{number_as_word} centu #{word}"
     elsif count % 10 == 1 && count % 100 != 11
-      "#{count} #{other_word} centu #{word}"
+      "#{count} #{number_as_word} centu #{word}"
     else
-      "#{count} #{other_word} centu #{word}s"
+      "#{count} #{number_as_word} centu #{word}s"
     end
   end
 end
