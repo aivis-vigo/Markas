@@ -53,10 +53,12 @@ class Mail
 
   private
 
+  # Calculates the count of stamps for a given price.
   def calculate_stamp_count(stamp)
     (@customer_input / stamp).floor
   end
 
+  # Adds stamps to the bought_stamps array based on the count_for hash
   def add_stamps_to_bought_stamps(count_for, bought_stamps)
     count_for.each do |price, units|
       units = case price
@@ -70,11 +72,13 @@ class Mail
     end
   end
 
+  # Handles the change of 3 by adding it as a stamp.
   def handle_change(change, count_for)
     count_for[change] = 1
     @customer_input = change
   end
 
+  # Decreases the count for a stamp and updates the remaining customer input.
   def change_left(count_for, stamp)
     count_for[stamp] -= 1
     @customer_input -= count_for[stamp] * stamp
