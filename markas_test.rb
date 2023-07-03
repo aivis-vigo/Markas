@@ -27,36 +27,36 @@ class MailTest < Test::Unit::TestCase
   end
 
   def test_same_as_min
-    assert_equal '1 piecu centu marka, 1 trīs centu marka', @same_as_min.validate,
+    assert_equal '1 piecu centu marka, 1 trīs centu marka.', @same_as_min.validate,
                  '8 should be 1 five cent and 1 three cent stamps'
   end
 
   def test_second_coin
-    assert_equal '4 trīs centu markas', @second_coin.validate, '12 should be 4 three cent stamps'
+    assert_equal '4 trīs centu markas.', @second_coin.validate, '12 should be 4 three cent stamps'
   end
 
   def test_bought_few
-    assert_equal '5 piecu centu markas', @bought_few.validate, '25 should be 5 five cent stamps'
+    assert_equal '5 piecu centu markas.', @bought_few.validate, '25 should be 5 five cent stamps'
   end
 
   def test_buy_with_two_coins
-    assert_equal '21 piecu centu marka, 2 trīs centu markas', @bought_many.validate,
+    assert_equal '21 piecu centu marka, 2 trīs centu markas.', @bought_many.validate,
                  '111 should be 21 five cent and 2 three cent stamps'
   end
 
   def test_many_coin
-    assert_equal '21 piecu centu marka', @many_coins.validate, '105 should be 21 stamps'
+    assert_equal '21 piecu centu marka.', @many_coins.validate, '105 should be 21 stamps'
   end
 
   def test_more_than_one_argument
-    assert_equal '29 piecu centu markas', @more_than_one_argument.validate, '145 should be 29 stamps'
+    assert_equal '29 piecu centu markas.', @more_than_one_argument.validate, '145 should be 29 stamps'
   end
 
   def test_float_argument
-    assert_equal '2 piecu centu markas', @float_argument.validate, '10.5 should be 2 stamps'
+    assert_equal '2 piecu centu markas.', @float_argument.validate, '10.5 should be 2 stamps'
   end
 
   def test_prefixed_argument
-    assert_equal '2 piecu centu markas', @prefixed_argument.validate, '0010 should be 2 stamps'
+    assert_equal '2 piecu centu markas.', @prefixed_argument.validate, '0010 should be 2 stamps'
   end
 end

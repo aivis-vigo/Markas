@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This class represents a Mail object that handles customer input, minimum price, and available stamps.
+# This class represents a Mail object that handles customer input, minimum price, available stamps.
 class Mail
   def initialize(
     customer_input,
@@ -27,24 +27,21 @@ class Mail
 
   # Calculates and returns the stamps based on the customer input.
   def stamps
-    count_for = {}
-    bought_stamps = []
-
     @available_stamps.each do |stamp|
       count = calculate_stamp_count(stamp)
 
-      count_for[stamp] = count if count >= 1
+      @count_for[stamp] = count if count >= 1
 
-      change = @customer_input - (count_for[stamp] * stamp)
+      change = @customer_input - (@count_for[stamp] * stamp)
 
       case change
       when 0
-        add_stamps_to_bought_stamps(count_for, bought_stamps)
-        return bought_stamps.join(', ')
+        add_stamps_to_bought_stamps(@count_for, @bought_stamps)
+        return "#{@bought_stamps.join(', ')}."
       when 3
-        handle_change(change, count_for)
+        handle_change(change, @count_for)
       else
-        change_left(count_for, stamp)
+        change_left(@count_for, stamp)
       end
     end
 
