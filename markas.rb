@@ -58,6 +58,7 @@ class Mail
 
   # Adds stamps to the bought_stamps array based on the count_for hash
   def add_stamps_to_bought_stamps(count_for, bought_stamps)
+    count_for = remove_zero_values(count_for)
     count_for.each do |price, units|
       units = case price
               when 5
@@ -103,6 +104,15 @@ class Mail
     else
       "#{count} #{number_as_word} centu #{word}s"
     end
+  end
+
+  # Removes zero values from a hash.
+  def remove_zero_values(original_hash)
+    filtered = {}
+    original_hash.each do |key, value|
+      filtered[key] = value if value != 0
+    end
+    filtered
   end
 end
 
