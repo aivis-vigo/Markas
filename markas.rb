@@ -38,14 +38,15 @@ class Mail
       when 0
         add_stamps_to_bought_stamps(@count_for, @bought_stamps)
         return "#{@bought_stamps.join(', ')}."
+      when 2
+        handle_smaller_change(@customer_input, stamp)
+        return "#{@bought_stamps.join(', ')}."
       when 3
         handle_change(change, @count_for)
       else
         change_left(@count_for, stamp)
       end
     end
-
-    'Atlikums... Nav iespējams veikt pirkumu!'
   end
 
   private
@@ -67,6 +68,18 @@ class Mail
 
       bought_stamps << units.to_s
     end
+  end
+
+  # Handles a specific case when the change is two
+  def handle_smaller_change(input, stamp)
+    if input == 12
+      @count_for[@available_stamps.last] = input / @available_stamps.last
+      @count_for.delete(stamp)
+    else
+      @count_for[stamp] -= 2
+      @count_for[@available_stamps.last] = (@customer_input - @count_for[stamp] * stamp) / @available_stamps.last
+    end
+    add_stamps_to_bought_stamps(@count_for, @bought_stamps)
   end
 
   # Handles the change of 3 by adding it as a stamp.

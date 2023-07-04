@@ -10,6 +10,7 @@ class MailTest < Test::Unit::TestCase
     @min_value = Mail.new(5, 8, [5, 3])
     @same_as_min = Mail.new(8, 8, [5, 3])
     @second_coin = Mail.new(12, 8, [5, 3])
+    @when_change_is_two = Mail.new(22, 8, [5, 3])
     @bought_few = Mail.new(25, 8, [5, 3])
     @many_coins = Mail.new(105, 8, [5, 3])
     @bought_many = Mail.new(111, 8, [5, 3])
@@ -33,6 +34,10 @@ class MailTest < Test::Unit::TestCase
 
   def test_second_coin
     assert_equal '4 trīs centu markas.', @second_coin.validate, '12 should be 4 three cent stamps'
+  end
+
+  def test_when_change_is_two
+    assert_equal '2 piecu centu markas, 4 trīs centu markas.', @when_change_is_two.validate, '22 should be 6 stamps'
   end
 
   def test_bought_few
